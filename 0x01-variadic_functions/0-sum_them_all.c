@@ -2,23 +2,32 @@
 #include "variadic_functions.h"
 
 /**
- * sum_them_all - sums of all its parameters.
- * @n: number of parameters
+ * sum_them_all - A function with two arguments
+ * @n: int data structure - first argument
  *
- * Return: sum .
+ * Description: returns the sum of all its parameters
+ * Return: value of sum or 0
  */
 int sum_them_all(const unsigned int n, ...)
 {
-	int sum = 0;
 	unsigned int i;
-	va_list pointer;
+	int add = 0, number;
 
-	if (n <= 0)
-	return (0);
+	va_list parameters;
 
-	va_start(pointer, n);
+	va_start(parameters, n);
+
+	if (n == 0)
+	{
+		return (0);
+	}
+
 	for (i = 0; i < n; i++)
-		sum += va_arg(pointer, int);
-	va_end(pointer);
-	return (sum);
+	{
+		number = va_arg(parameters, int);
+		add = add + number;
+	}
+
+	va_end(parameters);
+	return (add);
 }
